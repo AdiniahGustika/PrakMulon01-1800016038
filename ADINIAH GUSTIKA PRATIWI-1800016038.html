@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Animasi Canvas</title>
+<head>
+<style type="text/css">
+body{
+margin:0;
+}
+canvas{
+background-color: #cccc;
+}
+</style>
+<body>
+<canvas id="myCanvas" width="800" height="450">
+    </canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+            if (canvas.getContext) {
+                 var context = canvas.getContext('2d');
+                var posX = 200,
+                    posY = 150,
+                    flag = true;
+             
+                setInterval(function() {
+                 
+                    context.fillStyle = "#00FFFF";
+                    context.fillRect(0,0,canvas.width, canvas.height);
+
+                    context.fillRect(0,0,canvas.width, canvas.height);
+                    context.beginPath();
+                    context.fillStyle = "#ed0a0a";
+
+                    context.arc(posX, posY, 30, 0, Math.PI*2, true);
+                    context.closePath();
+                    context.fill();
+
+                    console.log(posX + "," + posY);
+                    if(flag && posX < 201) {
+                        posX += 1;
+                    } else {
+                        posX -= 1;
+                        flag = false;
+                        if(posX < 100) {
+                            flag = true;
+                        }
+                    }
+                    if(flag) {
+                        posY = 150-Math.sqrt(2500-Math.pow(posX-150, 2));
+                    } else {
+                        posY = 150+Math.sqrt(2500-Math.pow(posX-150, 2));
+                    }
+
+                    context.beginPath();
+                    context.arc(150, 150, 8, 0, Math.PI*2, true)
+                    context.fillStyle = "#9932CC";
+                    context.fill();
+
+                }, 50);
+            }
+    </script>
